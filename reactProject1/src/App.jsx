@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import classes from "./App.module.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const heroisIniciais = [
+    { nome: "Clark Kent", heroi: "Superman" },
+    { nome: "Bruce Wayne", heroi: "Batman" },
+    { nome: "Diana Prince", heroi: "Wonder Woman" },
+  ];
+
+  const [herois, setHerois] = useState(heroisIniciais);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      {herois.map((item) => {
+        return (
+          <div className={classes.mainText}>
+            <h1>{item.heroi}</h1>
+            <h2>{item.nome}</h2>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
 
-export default App
+export default App;
