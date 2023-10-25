@@ -1,20 +1,23 @@
 import React from "react";
+import Heroi from "./Heroi";
 
 const Lista = ({ herois, setHerois }) => {
   const handleDelete = (heroi) => {
     setHerois(herois.filter((item) => item.heroi != heroi));
   };
+
+  const handleEdicao = (indice, nome, heroi) => {
+    console.log(`${indice} ${nome} ${heroi}`)
+    const novoHeroi = {nome, heroi}
+    const novosHerois = [...herois.slice(0, indice), novoHeroi,...herois.slice(indice+1, herois.length)]
+    setHerois(novosHerois)
+  }
+
   return (
     <div>
-      {herois.map((item) => {
+      {herois.map((item, indice) => {
         return (
-          <div key={item.nome}>
-            <h1>{item.heroi}</h1>
-            <h2>{item.nome}</h2>
-            <button onClick={(event) => handleDelete(item.heroi)}>
-              Apagar {item.heroi}
-            </button>
-          </div>
+          <Heroi key={item.nome} indice={indice} handleEdicao={handleEdicao} item={item} handleDelete={handleDelete} />
         );
       })}
     </div>
