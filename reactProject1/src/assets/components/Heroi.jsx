@@ -4,6 +4,7 @@ const Heroi = ({ item, handleDelete, handleEdicao, indice }) => {
   const [heroi, setHeroi] = useState(item.heroi);
   const [nome, setNome] = useState(item.nome);
   const [editando, setEditando] = useState(false);
+  const [detalhes, setDetalhes] = useState(false);
 
   const handleClick = () => {
     handleEdicao(indice, nome, heroi)
@@ -26,6 +27,7 @@ const Heroi = ({ item, handleDelete, handleEdicao, indice }) => {
        : 
         <h2>{nome}</h2>
       }
+      <div>{ detalhes ? item.descricao : `${item.descricao.substring(0,40)}...`}<span style={{color: 'blue', textDecoration:'underline', cursor: 'pointer'}} onClick={() => setDetalhes(!detalhes)}>{detalhes ? `ver menos` : `ver mais`}</span></div>
       {editando ? (
         <div>
           <button onClick={handleClick}>Confirmar</button>

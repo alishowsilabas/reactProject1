@@ -8,7 +8,7 @@ const Lista = ({ herois, setHerois }) => {
 
   const handleEdicao = (indice, nome, heroi) => {
     console.log(`${indice} ${nome} ${heroi}`)
-    const novoHeroi = {nome, heroi}
+    const novoHeroi = {...herois[indice], nome, heroi}
     const novosHerois = [...herois.slice(0, indice), novoHeroi,...herois.slice(indice+1, herois.length)]
     setHerois(novosHerois)
   }
